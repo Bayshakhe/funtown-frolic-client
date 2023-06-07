@@ -9,7 +9,7 @@ const Header = () => {
       <li>
         <NavLink
           to="/"
-          className={({ isActive }) => (isActive ? "activeLink" : "notActive")}
+          className={({ isActive }) => (isActive ? "activeLink" : "")}
         >
           Home
         </NavLink>
@@ -17,7 +17,7 @@ const Header = () => {
       <li>
         <NavLink
           to="/instractors"
-          className={({ isActive }) => (isActive ? "activeLink" : "notActive")}
+          className={({ isActive }) => (isActive ? "activeLink" : "")}
         >
           Instructors
         </NavLink>
@@ -25,7 +25,7 @@ const Header = () => {
       <li>
         <NavLink
           to="/classes"
-          className={({ isActive }) => (isActive ? "activeLink" : "notActive")}
+          className={({ isActive }) => (isActive ? "activeLink" : "")}
         >
           Classes
         </NavLink>
@@ -38,7 +38,7 @@ const Header = () => {
   );
 
   return (
-    <div className="navbar shadow-lg static rounded-full px-5">
+    <div className="navbar shadow-lg fixed rounded-full px-3 py-0">
       <div className="navbar-start">
         <img src={logo} alt="" className="w-14" />
         <h1 className="text-3xl font-semibold">Funtown<span className="text-[#019999]">Frolic</span></h1>

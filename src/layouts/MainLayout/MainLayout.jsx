@@ -5,9 +5,9 @@ import { Outlet } from 'react-router-dom';
 
 const MainLayout = () => {
     return (
-        <div className='max-w-screen-2xl mx-auto'>
+        <div className=''>
             <Header></Header>
-            <div className='min-h-[calc(100vh-100px)] mx-auto'>
+            <div className='min-h-[calc(100vh-100px)] mx-auto pt-16'>
             <Outlet></Outlet>
             </div>
             <Footer></Footer>
