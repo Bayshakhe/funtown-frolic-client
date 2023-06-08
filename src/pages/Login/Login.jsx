@@ -1,8 +1,12 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import useAuth from "../../hooks/useAuth";
 
 const Login = () => {
+  const {login,googleLogin} = useAuth();
+  const [error, setError] = useState('');
+  const navigate = useNavigate()
   const {
     register,
     handleSubmit,
@@ -10,10 +14,23 @@ const Login = () => {
     formState: { errors },
   } = useForm();
   const onSubmit = (data) => {
-    console.log(data);
+    // console.log(data);
+    login(data.email, data.password)
+    .then(result => {
+      console.log(result.user)
+      setError('')
+      navigate('/')
+    })
+    .catch(err => setError(err.message))
   };
 
-  const handleGoogleLogin = () => {};
+  const handleGoogleLogin = () => {
+    googleLogin()
+    .then(()=>{
+      navigate('/')
+    })
+    .catch(err => console.log(err.message))
+  };
 
   return (
     <div className=" min-h-screen pt-20 bg-teal">
@@ -22,7 +39,7 @@ const Login = () => {
         <div className="hero-content">
           <div className="rounded-md flex-shrink-0 shadow-2xl w-[400px] bg-base-100">
             <div className="card-body">
-              <div className="form-control mt-6">
+              <div onClick={handleGoogleLogin} className="form-control mt-6">
                 <button className="button-outline">Google Login</button>
               </div>
               <div className="divider mt-5 mb-2">OR</div>
@@ -51,9 +68,9 @@ const Login = () => {
                     className="input input-bordered"
                   />
                 </div>
-                {/* {
-                  error && <p>{error}</p>
-                } */}
+                {
+                  error && <p className="text-red-600 mt-2 ml-1">{error}</p>
+                }
                 <div className="form-control mt-6">
                   <input type="submit" className="button" />
                 </div>
