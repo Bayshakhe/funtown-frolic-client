@@ -6,5 +6,14 @@
     @apply text-[#019999] font-bold underline
 }
 .button{
-    @apply px-4 py-3 font-bold border bg-[#019999] text-white hover:border-[#019999] hover:text-black hover:bg-teal-500
+    @apply px-4 py-3 font-bold border bg-[#019999] text-white hover:border-[#019999] hover:text-black hover:bg-teal-500 rounded-full
+}
+.button-outline{
+    @apply px-4 py-3 font-bold btn-outline border border-[#019999] text-[#019999] hover:text-white hover:bg-[#019999] rounded-full
+}
+.bg-teal{
+    @apply bg-[#019999]
+}
+.text-teal{
+    @apply text-[#019999]
 }

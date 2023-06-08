@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import logo from "/Logo.png";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 const Header = () => {
   const [dropdownNav, setDropdownNav] = useState(false);
@@ -32,13 +32,13 @@ const Header = () => {
       </li>
 
       <li>
-        <a className="button">Login</a>
+        <Link to='/login' className="button">Login</Link>
       </li>
     </>
   );
 
   return (
-    <div className="navbar shadow-lg fixed rounded-full px-3 py-0">
+    <div className="navbar z-10 bg-white bg-opacity-80 shadow-lg fixed rounded-full px-3 py-0">
       <div className="navbar-start">
         <img src={logo} alt="" className="w-14" />
         <h1 className="text-3xl font-semibold">Funtown<span className="text-[#019999]">Frolic</span></h1>
