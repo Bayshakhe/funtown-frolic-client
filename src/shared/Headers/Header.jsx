@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import logo from "/Logo.png";
 import { Link, NavLink } from "react-router-dom";
+import useAuth from "../../hooks/useAuth";
 
 const Header = () => {
+  const { user, logOut } = useAuth();
   const [dropdownNav, setDropdownNav] = useState(false);
   const navItems = (
     <>
@@ -30,10 +32,36 @@ const Header = () => {
           Classes
         </NavLink>
       </li>
-
-      <li>
-        <Link to='/login' className="button">Login</Link>
+      {
+        user && <li>
+        <NavLink
+          to="/dashboard"
+          className={({ isActive }) => (isActive ? "activeLink" : "")}
+        >
+          Dashboard
+        </NavLink>
       </li>
+      }
+      {user && (
+        <div className="avatar">
+          <div className="w-12 rounded-full mr-2 ml-3">
+            <img src={user.photoURL} title={user.displayName}/>
+          </div>
+        </div>
+      )}
+      {user ? (
+        <li>
+          <button onClick={logOut} className="button">
+            Log Out
+          </button>
+        </li>
+      ) : (
+        <li>
+          <Link to="/login" className="button">
+            Login
+          </Link>
+        </li>
+      )}
     </>
   );
 
@@ -41,7 +69,9 @@ const Header = () => {
     <div className="navbar z-10 bg-white bg-opacity-80 shadow-lg fixed rounded-full px-3 py-0">
       <div className="navbar-start">
         <img src={logo} alt="" className="w-14" />
-        <h1 className="text-3xl font-semibold">Funtown<span className="text-[#019999]">Frolic</span></h1>
+        <h1 className="text-3xl font-semibold">
+          Funtown<span className="text-[#019999]">Frolic</span>
+        </h1>
       </div>
       <div className="navbar-end">
         <div className="hidden lg:flex">
