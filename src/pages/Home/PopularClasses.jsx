@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react';
 
 const PopularClasses = () => {
     const [danceClasses, setDanceClasses] = useState([])
-    console.log(danceClasses)
+    // console.log(danceClasses)
     useEffect(()=>{
-        fetch('http://localhost:5000/classes')
+        fetch(`${import.meta.env.VITE_API_URL}/classes`)
         .then(res => res.json())
         .then(data => setDanceClasses(data))
     },[])

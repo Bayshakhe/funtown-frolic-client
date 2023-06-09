@@ -17,3 +17,6 @@
 .text-teal{
     @apply text-[#019999]
 }
+.stat-box{
+    @apply transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110  duration-500 w-full shadow-md shadow-white p-8 border-x border-white flex flex-row-reverse items-center justify-center
+}

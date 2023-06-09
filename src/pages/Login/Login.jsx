@@ -17,7 +17,18 @@ const Login = () => {
     // console.log(data);
     login(data.email, data.password)
     .then(result => {
-      console.log(result.user)
+      const user = result.user
+      const savedUser = {email: user.email, name: user.displayName}
+            // console.log(savedUser)
+            fetch(`${import.meta.env.VITE_API_URL}/users`, {
+              method: 'POST',
+              headers: {
+                'content-type': 'application/json'
+              },
+              body: JSON.stringify(savedUser)
+            })
+            .then(res => res.json())
+            .then(data => console.log(data))
       setError('')
       navigate('/')
     })
@@ -26,7 +37,19 @@ const Login = () => {
 
   const handleGoogleLogin = () => {
     googleLogin()
-    .then(()=>{
+    .then((result)=>{
+      console.log(result.user)
+      const user = result.user
+      const savedUser = {email: user.email, name: user.displayName}
+      fetch(`${import.meta.env.VITE_API_URL}/users`, {
+        method: 'POST',
+        headers: {
+          'content-type': 'application/json'
+        },
+        body: JSON.stringify(savedUser)
+      })
+      .then(res => res.json())
+      .then(data => console.log(data))
       navigate('/')
     })
     .catch(err => console.log(err.message))

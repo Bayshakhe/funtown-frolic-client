@@ -4,8 +4,8 @@ const OurAchievements = () => {
   return (
     <div className="bg-teal text-white text-center p-12 md:py-20 md:px-36">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 shadow bg-teal ">
-        <div className="w-full shadow-md shadow-white p-8 border-x border-white flex flex-row-reverse items-center justify-center">
-          <div className=" text-white">
+        <div className="stat-box">
+          <div className="stat-figure text-white">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -29,7 +29,7 @@ const OurAchievements = () => {
           </div>
         </div>
 
-        <div className="shadow-md shadow-white p-8 border-x border-white  flex flex-row-reverse items-center justify-center">
+        <div className="stat-box">
           <div className="stat-figure text-white">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -54,7 +54,7 @@ const OurAchievements = () => {
           </div>
         </div>
 
-        <div className=" shadow-md shadow-white p-8 border-x border-white  flex flex-row-reverse items-center justify-center">
+        <div className="stat-box">
           <div className="stat-figure text-white">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -77,7 +77,7 @@ const OurAchievements = () => {
           </div>
         </div>
 
-        <div className="shadow-md shadow-white p-8 border-x border-white  flex flex-row-reverse items-center justify-center">
+        <div className="stat-box">
           <div className="stat-figure text-primary">
             <svg
               xmlns="http://www.w3.org/2000/svg"
