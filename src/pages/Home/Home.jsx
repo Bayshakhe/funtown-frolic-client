@@ -3,6 +3,7 @@ import Banner from "./Banner";
 import PopularClasses from "./PopularClasses";
 import SectionTitle from "../../components/SectionTitle";
 import PopularInstructors from "./PopularInstructors";
+import OurAccomplishments from "./OurAccomplishments";
 
 const Home = () => {
   return (
@@ -18,6 +19,11 @@ const Home = () => {
         title="Popular Instructors"
       ></SectionTitle>
       <PopularInstructors></PopularInstructors>
+      <SectionTitle
+        subTitle="We advise you to take the right decision."
+        title="Our Accomplishments"
+      ></SectionTitle>
+      <OurAccomplishments></OurAccomplishments>
     </div>
   );
 };
