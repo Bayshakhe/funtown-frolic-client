@@ -44,7 +44,7 @@ const Header = () => {
       }
       {user && (
         <div className="avatar">
-          <div className="w-12 rounded-full mr-2 ml-3">
+          <div className="w-[44px] rounded-full mr-2 ml-3">
             <img src={user.photoURL} title={user.displayName}/>
           </div>
         </div>
@@ -68,10 +68,10 @@ const Header = () => {
   return (
     <div className="navbar z-10 bg-white bg-opacity-80 shadow-lg fixed rounded-full px-3 py-0">
       <div className="navbar-start">
-        <img src={logo} alt="" className="w-14" />
-        <h1 className="text-3xl font-semibold">
+        <img src={logo} alt="" className="w-12" />
+        <Link to='/' className="text-2xl font-semibold">
           Funtown<span className="text-[#019999]">Frolic</span>
-        </h1>
+        </Link>
       </div>
       <div className="navbar-end">
         <div className="hidden lg:flex">
