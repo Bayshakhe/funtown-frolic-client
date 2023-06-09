@@ -29,6 +29,16 @@ const Register = () => {
       .then((result) => {
         updateUserProfile(data.name, data.photo)
           .then(() => {
+            const savedUser = {email: data.email, name: data.name}
+            fetch('http://localhost:5000/users', {
+              method: 'POST',
+              headers: {
+                'content-type': 'application/json'
+              },
+              body: JSON.stringify(savedUser)
+            })
+            .then(res => res.json())
+            .then(data => console.log(data))
             navigate('/login')
           })
           .catch((error) => {
