@@ -26,7 +26,7 @@ const Header = () => {
       </li>
       <li>
         <NavLink
-          to="/classes"
+          to="/allClasses"
           className={({ isActive }) => (isActive ? "activeLink" : "")}
         >
           Classes
@@ -35,7 +35,7 @@ const Header = () => {
       {
         user && <li>
         <NavLink
-          to="/dashboard"
+          to="/dashboard/selectedClass"
           className={({ isActive }) => (isActive ? "activeLink" : "")}
         >
           Dashboard

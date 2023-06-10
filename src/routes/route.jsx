@@ -7,6 +7,10 @@ import Login from '../pages/Login/Login';
 import Register from '../pages/Register/Register';
 import Instructors from '../pages/Instructors/Instructors';
 import SeeClasses from '../pages/Instructors/SeeClasses';
+import AllClasses from '../pages/AllClasses/AllClasses';
+import Dashboard from '../layouts/Dashboard/Dashboard';
+import SelectedClass from '../pages/Dashboard/SelectedClass';
+import PrivateRoute from './PrivateRoute';
 
 const router = createBrowserRouter([
     {
@@ -23,13 +27,17 @@ const router = createBrowserRouter([
             element:<Instructors></Instructors>
         },
         {
-            path: '/seeClass/:email',
+            path: '/instructor/:email',
             element:<SeeClasses></SeeClasses>,
-            loader: ({params}) => fetch(`${import.meta.env.VITE_API_URL}/seeClass/?email=${params.email}`)
+            loader: ({params}) => fetch(`${import.meta.env.VITE_API_URL}/instructor/class/?email=${params.email}`)
         },
         {
-            path: '/classes',
-            element:<p>classes</p>
+            path: '/allClasses',
+            element:<AllClasses></AllClasses>
+        },
+        {
+            path: '/allClasses',
+            element:<AllClasses></AllClasses>
         },
         {
             path: '/login',
@@ -41,6 +49,16 @@ const router = createBrowserRouter([
         },
       ]
     },
+    {
+        path: '/dashboard',
+        element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
+        children: [
+            {
+                path: 'selectedClass',
+                element: <SelectedClass></SelectedClass>
+            }
+        ]
+    }
   ]);
 
 export default router;
