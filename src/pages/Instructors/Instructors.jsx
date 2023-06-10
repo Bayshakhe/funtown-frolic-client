@@ -15,7 +15,7 @@ const Instructors = () => {
       {instructors.map((i) => (
         <div
           key={i._id}
-          className=" w-3/2 mx-auto card card-side bg-base-100 shadow-xl grid grid-cols-2"
+          className=" md:w-2/4 mx-auto card card-side bg-base-100 shadow-xl grid grid-cols-2"
         >
           <figure>
             <img
@@ -35,7 +35,7 @@ const Instructors = () => {
               <p className="text-right">Available Seat: {i.available_seat}</p>
             </div>
             <div className="card-actions justify-end mt-5">
-              <Link to='/seeClass' className="button" >See Classes</Link>
+              <Link to={`/seeClass/${i.instructorEmail}`} className="button" >See Classes</Link>
             </div>
           </div>
         </div>

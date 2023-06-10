@@ -23,8 +23,9 @@ const router = createBrowserRouter([
             element:<Instructors></Instructors>
         },
         {
-            path: '/seeClass',
-            element:<SeeClasses></SeeClasses>
+            path: '/seeClass/:email',
+            element:<SeeClasses></SeeClasses>,
+            loader: ({params}) => fetch(`${import.meta.env.VITE_API_URL}/seeClass/?email=${params.email}`)
         },
         {
             path: '/classes',
