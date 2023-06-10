@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import SectionTitle from "../../components/SectionTitle";
+import { Link } from "react-router-dom";
 
 const AllClasses = () => {
   const [danceClasses, setDanceClasses] = useState([]);
@@ -35,7 +36,7 @@ const AllClasses = () => {
               <p className="text-right">Available Seat: {i.available_seat}</p>
             </div>
             <div className="card-actions justify-center mt-5">
-              <button className="button">Select</button>
+              <Link to={'/dashboard/selectedClass'} className="button">Select</Link>
             </div>
           </div>
           </div>

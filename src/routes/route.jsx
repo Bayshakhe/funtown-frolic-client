@@ -29,11 +29,7 @@ const router = createBrowserRouter([
         {
             path: '/instructor/:email',
             element:<SeeClasses></SeeClasses>,
-            loader: ({params}) => fetch(`${import.meta.env.VITE_API_URL}/instructor/class/?email=${params.email}`)
-        },
-        {
-            path: '/allClasses',
-            element:<AllClasses></AllClasses>
+            loader: ({params}) => fetch(`${import.meta.env.VITE_API_URL}/instructor/${params?.email}`)
         },
         {
             path: '/allClasses',

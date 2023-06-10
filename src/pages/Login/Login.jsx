@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import useAuth from "../../hooks/useAuth";
 
@@ -7,11 +7,11 @@ const Login = () => {
   const {login,googleLogin} = useAuth();
   const [error, setError] = useState('');
   const navigate = useNavigate()
+  const location = useLocation()
+  const from = location.state?.from?.pathname || '/'
   const {
     register,
     handleSubmit,
-    watch,
-    formState: { errors },
   } = useForm();
   const onSubmit = (data) => {
     // console.log(data);
@@ -30,7 +30,7 @@ const Login = () => {
             .then(res => res.json())
             .then(data => console.log(data))
       setError('')
-      navigate('/')
+      navigate(from, {replace:true})
     })
     .catch(err => setError(err.message))
   };
@@ -50,7 +50,7 @@ const Login = () => {
       })
       .then(res => res.json())
       .then(data => console.log(data))
-      navigate('/')
+      navigate(from, {replace: true})
     })
     .catch(err => console.log(err.message))
   };

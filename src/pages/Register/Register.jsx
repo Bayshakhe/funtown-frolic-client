@@ -1,17 +1,18 @@
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import useAuth from "../../hooks/useAuth";
 import Swal from "sweetalert2";
 
 const Register = () => {
-  const { createUser, updateUserProfile,googleLogin } = useAuth();
-  const navigate = useNavigate()
+  const { createUser, updateUserProfile, googleLogin } = useAuth();
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
 
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
   } = useForm();
   const onSubmit = (data) => {
@@ -26,11 +27,10 @@ const Register = () => {
     }
 
     createUser(data.email, data.password)
-      .then((result) => {
+      .then(() => {
         updateUserProfile(data.name, data.photo)
           .then(() => {
-            
-            navigate('/login')
+            navigate("/login");
           })
           .catch((error) => {
             console.log(error.message);
@@ -44,22 +44,22 @@ const Register = () => {
 
   const handleGoogleLogin = () => {
     googleLogin()
-    .then((result)=>{
-      console.log(result.user)
-      const user = result.user
-      const savedUser = {email: user.email, name: user.displayName}
-      fetch(`${import.meta.env.VITE_API_URL}/users`, {
-        method: 'POST',
-        headers: {
-          'content-type': 'application/json'
-        },
-        body: JSON.stringify(savedUser)
+      .then((result) => {
+        console.log(result.user);
+        const user = result.user;
+        const savedUser = { email: user.email, name: user.displayName };
+        fetch(`${import.meta.env.VITE_API_URL}/users`, {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(savedUser),
+        })
+          .then((res) => res.json())
+          .then((data) => console.log(data));
+        navigate(from, { replace: true });
       })
-      .then(res => res.json())
-      .then(data => console.log(data))
-      navigate('/')
-    })
-    .catch(err => console.log(err.message))
+      .catch((err) => console.log(err.message));
   };
 
   return (
@@ -84,10 +84,12 @@ const Register = () => {
                     <input
                       type="name"
                       placeholder="Name"
-                      {...register("name", {required: true})}
+                      {...register("name", { required: true })}
                       className="input input-bordered"
                     />
-                    {errors.name && <span className="text-red-600">Name is required</span>}
+                    {errors.name && (
+                      <span className="text-red-600">Name is required</span>
+                    )}
                   </div>
                   <div className="form-control">
                     <label className="label">
@@ -96,10 +98,12 @@ const Register = () => {
                     <input
                       type="email"
                       placeholder="Email"
-                      {...register("email", {required: true})}
+                      {...register("email", { required: true })}
                       className="input input-bordered"
                     />
-                    {errors.email && <span className="text-red-600">Email is required</span>}
+                    {errors.email && (
+                      <span className="text-red-600">Email is required</span>
+                    )}
                   </div>
                   <div className="form-control">
                     <label className="label">
@@ -108,12 +112,28 @@ const Register = () => {
                     <input
                       type="password"
                       placeholder="Password"
-                      {...register("password", {required: true, minLength: 6, pattern: /(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z])/})}
+                      {...register("password", {
+                        required: true,
+                        minLength: 6,
+                        pattern:
+                          /(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z])/,
+                      })}
                       className="input input-bordered"
                     />
-                    {errors.password?.type === 'required' && <span className="text-red-600">Password is required</span>}
-                    {errors.password?.type === 'minLength' && <span className="text-red-600">Password must be 6 characters</span>}
-                    {errors.password?.type === 'pattern' && <span className="text-red-600">Password must have one Uppercase, one lowercase, one number and one special characters.</span>}
+                    {errors.password?.type === "required" && (
+                      <span className="text-red-600">Password is required</span>
+                    )}
+                    {errors.password?.type === "minLength" && (
+                      <span className="text-red-600">
+                        Password must be 6 characters
+                      </span>
+                    )}
+                    {errors.password?.type === "pattern" && (
+                      <span className="text-red-600">
+                        Password must have one Uppercase, one lowercase, one
+                        number and one special characters.
+                      </span>
+                    )}
                   </div>
                   <div className="form-control">
                     <label className="label">
@@ -122,10 +142,14 @@ const Register = () => {
                     <input
                       type="password"
                       placeholder="Confirm Password"
-                      {...register("confirm", {required: true})}
+                      {...register("confirm", { required: true })}
                       className="input input-bordered"
                     />
-                    {errors.confirm && <span className="text-red-600">Confirm Password is required</span>}
+                    {errors.confirm && (
+                      <span className="text-red-600">
+                        Confirm Password is required
+                      </span>
+                    )}
                   </div>
                 </div>
                 <div className="form-control mt-4">
@@ -135,10 +159,12 @@ const Register = () => {
                   <input
                     type="url"
                     placeholder="Photo URL"
-                    {...register("photo", {required: true})}
+                    {...register("photo", { required: true })}
                     className="input input-bordered"
                   />
-                  {errors.photo && <span className="text-red-600">Photo URL is required</span>}
+                  {errors.photo && (
+                    <span className="text-red-600">Photo URL is required</span>
+                  )}
                 </div>
                 <div className="form-control mt-6">
                   <input type="submit" className="button" />

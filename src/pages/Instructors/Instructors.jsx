@@ -4,7 +4,8 @@ import SectionTitle from "../../components/SectionTitle";
 
 const Instructors = () => {
   const [instructors, setInstructors] = useState([]);
-  // console.log(danceClasses)
+  console.log(instructors)
+
   useEffect(() => {
     fetch(`${import.meta.env.VITE_API_URL}/instructor`)
       .then((res) => res.json())
@@ -42,7 +43,7 @@ const Instructors = () => {
               </div>
               <div className="card-actions justify-end mt-5">
                 <Link
-                  to={`/instructor/${i.instructorEmail}`}
+                  to={`/instructor/${i._id}`}
                   className="button"
                 >
                   See Classes
