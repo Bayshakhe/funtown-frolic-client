@@ -12,8 +12,8 @@ import InstructorDashboard from "../../pages/Dashboard/InstructorDashboard";
 const Dashboard = () => {
   const { user,logOut } = useAuth();
   const student = false;
-  const admin = false;
-  const instructor = true;
+  const admin = true;
+  const instructor = false;
 //   console.log(user);
   return (
     <div>
@@ -61,14 +61,14 @@ const Dashboard = () => {
                 Home
               </NavLink>
             </li>
-            <li className="font-semibold">
+            {/* <li className="font-semibold">
               <NavLink
                 to="/allClasses"
               >
               <BsReverseLayoutTextSidebarReverse className="text-xl"></BsReverseLayoutTextSidebarReverse>
                 All Classes
               </NavLink>
-            </li>
+            </li> */}
             <li onClick={logOut} className="font-semibold">
               <NavLink to='/'>
                 <AiOutlineLogout className="text-xl"></AiOutlineLogout>

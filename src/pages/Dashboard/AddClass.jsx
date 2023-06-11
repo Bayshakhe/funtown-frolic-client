@@ -23,7 +23,7 @@ const AddClass = () => {
       enrolled: parseFloat(enrolled),
       instructorEmail,
       instructorName,
-      instrucorImg: user?.photoURL,
+      instructorImg: user?.photoURL,
       price: parseFloat(price),
       status: "pending",
     };

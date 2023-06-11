@@ -9,7 +9,7 @@
     @apply p-4 btn font-bold border bg-[#019999] text-white hover:border-[#019999] hover:text-black hover:bg-teal-500 rounded-full normal-case 
 }
 .button-outline{
-    @apply p-3 font-bold btn btn-outline border border-[#019999] text-[#019999] hover:text-white hover:bg-[#019999] rounded-full
+    @apply p-3 font-bold btn btn-outline border border-[#019999] text-[#019999] hover:text-white hover:bg-[#019999] rounded-full normal-case 
 }
 .bg-teal{
     @apply bg-[#019999]

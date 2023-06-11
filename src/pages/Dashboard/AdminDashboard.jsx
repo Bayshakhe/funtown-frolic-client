@@ -8,7 +8,7 @@ const AdminDashboard = () => {
     <>
       <li>
         <NavLink
-          to="/dashboard/selectedClass"
+          to="/dashboard/manageClasses"
           className={({ isActive }) =>
             isActive ? "bg-teal text-white font-semibold" : "font-semibold"
           }
@@ -19,7 +19,7 @@ const AdminDashboard = () => {
       </li>
       <li>
         <NavLink
-          to="/dsdi"
+          to="/dashboard/manageUsers"
           className={({ isActive }) =>
             isActive ? "bg-teal text-white font-semibold" : "font-semibold"
           }
