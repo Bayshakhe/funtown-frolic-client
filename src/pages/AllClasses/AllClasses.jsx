@@ -15,8 +15,34 @@ const AllClasses = () => {
       .then((data) => setDanceClasses(data));
   }, []);
 
-  const handleSelect = () => {
-    if (!user) {
+  const handleSelect = (selectClass) => {
+    selectClass.studentEmail = user.email;
+    // console.log(selectClass)
+    if (user) {
+      fetch(`${import.meta.env.VITE_API_URL}/selected`, {
+        method: "POST",
+        headers: {
+          'content-type': 'application/json'
+        },
+        body: JSON.stringify(selectClass)
+      })
+      .then(res => res.json())
+      .then(data => {
+        console.log(data)
+        if(data.insertedId){
+          Swal.fire({
+            title: 'Congratulations!',
+            text: 'You Select this class. Pay this for continue.',
+            imageUrl: `${selectClass.classImg}`,
+            imageWidth: 300,
+            imageHeight: 200,
+            imageAlt: 'Class image',
+          })
+          navigate("/dashboard/selectedClass");
+        }
+      })
+    }
+    else{
       Swal.fire({
         title: "You have to log in before select this",
         showCancelButton: true,
@@ -28,9 +54,6 @@ const AllClasses = () => {
           navigate("/dashboard/selectedClass");
         }
       });
-    }
-    else{
-      navigate("/dashboard/selectedClass");
     }
   };
 
@@ -58,7 +81,7 @@ const AllClasses = () => {
                 <p className="text-right">Available Seat: {i.available_seat}</p>
               </div>
               <div className="card-actions justify-center mt-5">
-                <Link onClick={handleSelect} className="button">
+                <Link onClick={()=>handleSelect(i)} className="button">
                   Select
                 </Link>
               </div>

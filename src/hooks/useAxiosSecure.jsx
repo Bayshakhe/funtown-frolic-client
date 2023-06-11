@@ -12,15 +12,16 @@ const useAxiosSecure = () => {
     const navigate = useNavigate()
 
     useEffect(()=>{
-        axiosSecure.interceptors.request(config => {
+        axiosSecure.interceptors.request.use(config => {
             const token = `Bearer ${localStorage.getItem('access_token')}`
             if(token){
+                // console.log(config.headers)
                 config.headers.Authorization = token
             }
-            return config
+            return config;
         })
 
-        axiosSecure.interceptors.response(response => response, async error => {
+        axiosSecure.interceptors.response.use(response => response, async error => {
             if(error.response && error.response.status === 401 || error.response.status === 403){
                 await logOut()
                 navigate('/login')
@@ -28,6 +29,8 @@ const useAxiosSecure = () => {
             return Promise.reject(error)
         })
     },[logOut, navigate])
+
+    return [axiosSecure]
     
 };
 
