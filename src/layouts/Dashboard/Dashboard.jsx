@@ -11,9 +11,9 @@ import InstructorDashboard from "../../pages/Dashboard/InstructorDashboard";
 
 const Dashboard = () => {
   const { user,logOut } = useAuth();
-  const student = true;
+  const student = false;
   const admin = false;
-  const instructor = false;
+  const instructor = true;
 //   console.log(user);
   return (
     <div>

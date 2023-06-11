@@ -11,6 +11,8 @@ import AllClasses from '../pages/AllClasses/AllClasses';
 import Dashboard from '../layouts/Dashboard/Dashboard';
 import SelectedClass from '../pages/Dashboard/SelectedClass';
 import PrivateRoute from './PrivateRoute';
+import MyClass from '../pages/Dashboard/MyClass';
+import AddClass from '../pages/Dashboard/AddClass';
 
 const router = createBrowserRouter([
     {
@@ -52,7 +54,15 @@ const router = createBrowserRouter([
             {
                 path: 'selectedClass',
                 element: <SelectedClass></SelectedClass>
-            }
+            },
+            {
+                path: 'myClass',
+                element: <MyClass></MyClass>
+            },
+            {
+                path: 'addClass',
+                element: <AddClass></AddClass>
+            },
         ]
     }
   ]);

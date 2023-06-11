@@ -1,0 +1,61 @@
+import React, { useEffect, useState } from 'react';
+import useAuth from '../../hooks/useAuth';
+import { useQuery } from '@tanstack/react-query';
+import useAxiosSecure from '../../hooks/useAxiosSecure';
+
+const MyClass = () => {
+    const {user,loading} = useAuth()
+    // const [axiosSecure] = useAxiosSecure()
+    const [myClass, setMyClass]= useState([])
+    useEffect(()=>{
+        fetch(`${import.meta.env.VITE_API_URL}/myClass?email=${user?.email}`)
+        .then(res => res.json())
+        .then(data => setMyClass(data))
+    },[])
+    // const { refetch, data: selected = [] } = useQuery({
+    //     queryKey: ["carts", user?.email],
+    //     enabled: !loading,
+    //     queryFn: async () => {
+    //       const res = await axiosSecure(`/myClass?email=/${user?.email}`);
+    //       return res.data;
+    //     },
+    //   });
+    //   console.log(selected)
+    return (
+        <div className=' min-h-screen pt-20 bg-teal'>
+            <div className="overflow-x-auto m-14 w-2/3 mx-auto bg-white">
+          <table className="table border">
+            {/* head */}
+            <thead>
+              <tr className="font-semibold">
+                <th></th>
+                <th>Class Name</th>
+                <th>Enrolled</th>
+                <th>Status</th>
+                <th>FeedBack</th>
+                <th>Update</th>
+              </tr>
+            </thead>
+            <tbody>
+            {
+                myClass.map((i,index) => <tr key={index} className="mb-3 ">
+                <th>{index + 1}</th>
+                <td className="font-semibold">{i.className}</td>
+                <td>{i.enrolled}</td>
+                <td>{i.status}</td>
+                <td></td>
+                <td className="">
+                  <div className="btn btn-outline hover:bg-[#019999] border border-[#019999] hover:text-white">
+                    Update
+                  </div>
+                </td>
+              </tr>)
+            }
+            </tbody>
+            </table>
+        </div>
+        </div>
+    );
+};
+
+export default MyClass;

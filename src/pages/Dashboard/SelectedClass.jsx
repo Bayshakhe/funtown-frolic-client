@@ -22,40 +22,46 @@ const SelectedClass = () => {
       return res.data;
     },
   });
-  console.log(selected);
+  // console.log(selected);
   return (
-    <div className="overflow-x-auto m-14 w-2/3 mx-auto">
-      <table className="table border">
-        {/* head */}
-        <thead>
-          <tr className="font-semibold text-lg">
-            <th></th>
-            <th>Class Name</th>
-            <th>Price</th>
-            <th>Pay</th>
-            <th>Delete</th>
-          </tr>
-        </thead>
-        <tbody>
-          {selected.map((i, index) => (
-            <tr key={i._id} className="mb-3 ">
-              <th>{index + 1}</th>
-              <td className="font-bold">{i.className}</td>
-              <td>$ {i.price}</td>
-              <td>
-                <div className="btn bg-[#019999] text-white">Pay</div>
-              </td>
+    <>
+      {selected.length > 0 ? (
+        <div className="overflow-x-auto m-14 w-2/3 mx-auto">
+          <table className="table border">
+            {/* head */}
+            <thead>
+              <tr className="font-semibold text-lg">
+                <th></th>
+                <th>Class Name</th>
+                <th>Price</th>
+                <th>Pay</th>
+                <th>Delete</th>
+              </tr>
+            </thead>
+            <tbody>
+              {selected.map((i, index) => (
+                <tr key={i._id} className="mb-3 ">
+                  <th>{index + 1}</th>
+                  <td className="font-bold">{i.className}</td>
+                  <td>$ {i.price}</td>
+                  <td>
+                    <div className="btn bg-[#019999] text-white">Pay</div>
+                  </td>
 
-              <td className="">
-                <div className="btn btn-outline hover:bg-[#019999] border border-[#019999] hover:text-white">
-                  Delete
-                </div>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
+                  <td className="">
+                    <div className="btn btn-outline hover:bg-[#019999] border border-[#019999] hover:text-white">
+                      Delete
+                    </div>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      ) : (
+        <p className="text-3xl m-12 text-center">Not selected yet..</p>
+      )}
+    </>
   );
 };
 

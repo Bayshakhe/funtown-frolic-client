@@ -8,7 +8,7 @@ const InstructorDashboard = () => {
     <>
       <li>
         <NavLink
-          to="/dashboard/selectedClass"
+          to="/dashboard/myClass"
           className={({ isActive }) =>
             isActive ? "bg-teal text-white font-semibold" : "font-semibold"
           }
@@ -19,7 +19,7 @@ const InstructorDashboard = () => {
       </li>
       <li>
         <NavLink
-          to="/dsdi"
+          to="/dashboard/addClass"
           className={({ isActive }) =>
             isActive ? "bg-teal text-white font-semibold" : "font-semibold"
           }
