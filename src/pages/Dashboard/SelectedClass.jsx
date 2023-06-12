@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import useAuth from "../../hooks/useAuth";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
+import { Link } from "react-router-dom";
 
 const SelectedClass = () => {
   const { user, loading } = useAuth();
@@ -15,14 +16,14 @@ const SelectedClass = () => {
   //     .then(data => console.log(data))
   // },[])
   const { refetch, data: selected = [] } = useQuery({
-    queryKey: ["carts", user?.email],
+    queryKey: ["selected", user?.email],
     enabled: !loading,
     queryFn: async () => {
       const res = await axiosSecure(`/selected?email=${user?.email}`);
       return res.data;
     },
   });
-  // console.log(selected);
+  console.log(selected);
   return (
     <>
       {selected.length > 0 ? (
@@ -45,7 +46,7 @@ const SelectedClass = () => {
                   <td className="font-bold">{i.className}</td>
                   <td>$ {i.price}</td>
                   <td>
-                    <div className="btn bg-[#019999] text-white">Pay</div>
+                    <Link to={'/dashboard/payment'} className="btn bg-[#019999] text-white">Pay</Link>
                   </td>
 
                   <td className="">
