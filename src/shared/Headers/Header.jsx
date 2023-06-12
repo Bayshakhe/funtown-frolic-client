@@ -2,10 +2,12 @@ import React, { useState } from "react";
 import logo from "/Logo.png";
 import { Link, NavLink } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
+import useAdmin from "../../hooks/useAdmin";
 
 const Header = () => {
   const { user, logOut } = useAuth();
   const [dropdownNav, setDropdownNav] = useState(false);
+  const [isAdmin] = useAdmin()
   const navItems = (
     <>
       <li>
@@ -34,8 +36,14 @@ const Header = () => {
       </li>
       {
         user && <li>
+        {/* <NavLink
+          to={`${isAdmin ? '/dashboard/manageClasses' : '/dashboard/selectedClass'}`}
+          className={({ isActive }) => (isActive ? "activeLink" : "")}
+        >
+          Dashboard
+        </NavLink> */}
         <NavLink
-          to="/dashboard/selectedClass"
+          to={`/dashboard/myClass`}
           className={({ isActive }) => (isActive ? "activeLink" : "")}
         >
           Dashboard

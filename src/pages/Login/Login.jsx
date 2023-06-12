@@ -18,7 +18,7 @@ const Login = () => {
     login(data.email, data.password)
     .then(result => {
       const user = result.user
-      const savedUser = {email: user.email, name: user.displayName}
+      const savedUser = {email: user.email, name: user.displayName, role: 'student'}
             // console.log(savedUser)
             fetch(`${import.meta.env.VITE_API_URL}/users`, {
               method: 'POST',
@@ -40,7 +40,7 @@ const Login = () => {
     .then((result)=>{
       console.log(result.user)
       const user = result.user
-      const savedUser = {email: user.email, name: user.displayName}
+      const savedUser = {email: user.email, name: user.displayName, role: 'student'}
       fetch(`${import.meta.env.VITE_API_URL}/users`, {
         method: 'POST',
         headers: {

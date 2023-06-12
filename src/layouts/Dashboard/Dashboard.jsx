@@ -8,12 +8,14 @@ import useAuth from "../../hooks/useAuth";
 import StudentDashboard from "../../pages/Dashboard/StudentDashboard";
 import AdminDashboard from "../../pages/Dashboard/AdminDashboard";
 import InstructorDashboard from "../../pages/Dashboard/InstructorDashboard";
+import useAdmin from "../../hooks/useAdmin";
 
 const Dashboard = () => {
   const { user,logOut } = useAuth();
-  const student = false;
-  const admin = true;
-  const instructor = false;
+  const [isAdmin] = useAdmin()
+  // const student = '';
+  // const admin = false;
+  // const instructor = false;
 //   console.log(user);
   return (
     <div>
@@ -42,15 +44,18 @@ const Dashboard = () => {
             </li>
             <li>
               <div className="flex flex-col mx-auto mb-3">
-                <img src={user?.photoURL} className="w-20 rounded-full" />
+                <img src={user?.photoURL} className="w-14 h-14 rounded-full" />
                 <p className="font-bold text-xl text-teal">
                   {user?.displayName}
                 </p>
               </div>
             </li>
-            {student && <StudentDashboard></StudentDashboard>}
+            {
+              isAdmin ? <AdminDashboard></AdminDashboard> : <StudentDashboard></StudentDashboard>
+            }
+            {/* {student && <StudentDashboard></StudentDashboard>}
             {admin && <AdminDashboard></AdminDashboard>}
-            {instructor && <InstructorDashboard></InstructorDashboard>}
+            {instructor && <InstructorDashboard></InstructorDashboard>} */}
             <div className="divider my-2 text-teal font-semibold ">
               ---------------------------------------------
             </div>

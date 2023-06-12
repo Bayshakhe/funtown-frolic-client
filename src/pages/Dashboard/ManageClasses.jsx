@@ -1,13 +1,27 @@
 import React, { useEffect, useState } from "react";
+import useAuth from "../../hooks/useAuth";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
+import { useQuery } from "@tanstack/react-query";
 
 const ManageClasses = () => {
-  const [classes, setClasses] = useState([]);
+  const {user, loading} = useAuth()
+  const [axiosSecure] = useAxiosSecure()
+  // const [classes, setClasses] = useState([]);
   // console.log(classes)
-  useEffect(() => {
-    fetch(`${import.meta.env.VITE_API_URL}/allClasses`)
-      .then((res) => res.json())
-      .then((data) => setClasses(data));
-  }, []);
+  // useEffect(() => {
+  //   fetch(`${import.meta.env.VITE_API_URL}/allClasses`)
+  //     .then((res) => res.json())
+  //     .then((data) => setClasses(data));
+  // }, []);
+  const { refetch, data: classes = [] } = useQuery({
+    queryKey: ["allClasses", user?.email],
+    enabled: !loading && !!user?.email && !!localStorage.getItem('access_token'),
+    queryFn: async () => {
+      const res = await axiosSecure.get(`/allClasses`);
+      console.log(res)
+      return res.data;
+    },
+  });
   return (
     <div className=" min-h-screen pt-20 bg-teal">
       <div className="overflow-x-auto w-11/12 mx-auto bg-white">
@@ -26,7 +40,7 @@ const ManageClasses = () => {
             </tr>
           </thead>
           <tbody>
-            {classes.map((i, index) => (
+            {classes?.map((i, index) => (
               <tr key={index} className="mb-3 ">
                 <th>{index + 1}</th>
                 <th>

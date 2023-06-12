@@ -16,7 +16,7 @@ const AllClasses = () => {
   }, []);
 
   const handleSelect = (selectClass) => {
-    selectClass.studentEmail = user.email;
+    selectClass.studentEmail = user?.email;
     // console.log(selectClass)
     if (user) {
       fetch(`${import.meta.env.VITE_API_URL}/selected`, {

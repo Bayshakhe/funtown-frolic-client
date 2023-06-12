@@ -1,13 +1,62 @@
 import React, { useEffect, useState } from "react";
+import Swal from "sweetalert2";
+import useAuth from "../../hooks/useAuth";
+import { useQuery } from "@tanstack/react-query";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const ManageUsers = () => {
-  const [users, setUsers] = useState([]);
-  console.log(users);
-  useEffect(() => {
-    fetch(`${import.meta.env.VITE_API_URL}/users`)
+  const {user,loading} = useAuth()
+  const [axiosSecure] = useAxiosSecure()
+  // const [users, setUsers] = useState([]);
+  // console.log(users);
+  // useEffect(() => {
+  //   fetch(`${import.meta.env.VITE_API_URL}/users`)
+  //     .then((res) => res.json())
+  //     .then((data) => setUsers(data));
+  // }, []);
+  const { refetch, data: users = [] } = useQuery({
+    queryKey: ["users", user?.email],
+    enabled: !loading && !!user?.email && !!localStorage.getItem('access_token'),
+    queryFn: async () => {
+      const res = await axiosSecure.get(`/users`);
+      console.log(res)
+      return res.data;
+    },
+  });
+
+  const handleMakeAdmin = (user) => {
+    fetch(`${import.meta.env.VITE_API_URL}/users/admin/${user._id}`, {
+      method: "PATCH",
+    })
       .then((res) => res.json())
-      .then((data) => setUsers(data));
-  }, []);
+      .then((data) => {
+        if (data.modifiedCount > 0) {
+          Swal.fire({
+            icon: "success",
+            title: `Successfully ${user.name} is admin now.`,
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        }
+      });
+  };
+
+  const handleMakeInstructor = (user) => {
+    fetch(`${import.meta.env.VITE_API_URL}/users/instructor/${user._id}`, {
+      method: "PATCH",
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.modifiedCount > 0) {
+          Swal.fire({
+            icon: "success",
+            title: `Successfully ${user.name} is instructor now.`,
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        }
+      });
+  };
   return (
     <div className=" min-h-screen pt-20 bg-teal">
       <div className="overflow-x-auto m-14 w-2/3 mx-auto bg-white">
@@ -29,20 +78,28 @@ const ManageUsers = () => {
                 <td className="font-semibold">{i.name}</td>
                 <td>{i.email}</td>
                 <td>{i.role}</td>
-                {i.role === "student" ? (
-                  <td className="">
-                    <div className="button-outline">Instructor</div>
+                {i.role === "instructor" ? (
+                  <td>
+                    <div disabled className="button">
+                      Instructor
+                    </div>
                   </td>
                 ) : (
-                  <td>
-                    <div className="button-outline">Student</div>
+                  <td className="" onClick={() => handleMakeInstructor(i)}>
+                    <div className="button-outline">Instructor</div>
                   </td>
                 )}
                 {i.role === "admin" ? (
-                  <td className="">Admin</td>
+                  <td>
+                    <div disabled className="button">
+                      Admin
+                    </div>
+                  </td>
                 ) : (
                   <td className="">
-                    <div className="button">Admin</div>
+                    <div onClick={() => handleMakeAdmin(i)} className="button">
+                      Admin
+                    </div>
                   </td>
                 )}
               </tr>
