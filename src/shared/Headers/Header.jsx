@@ -36,18 +36,18 @@ const Header = () => {
       </li>
       {
         user && <li>
-        {/* <NavLink
+        <NavLink
           to={`${isAdmin ? '/dashboard/manageClasses' : '/dashboard/selectedClass'}`}
           className={({ isActive }) => (isActive ? "activeLink" : "")}
         >
           Dashboard
-        </NavLink> */}
-        <NavLink
+        </NavLink>
+        {/* <NavLink
           to={`/dashboard/myClass`}
           className={({ isActive }) => (isActive ? "activeLink" : "")}
         >
           Dashboard
-        </NavLink>
+        </NavLink> */}
       </li>
       }
       {user && (

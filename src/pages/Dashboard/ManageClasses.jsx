@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import useAuth from "../../hooks/useAuth";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
@@ -13,12 +13,12 @@ const ManageClasses = () => {
   //     .then((res) => res.json())
   //     .then((data) => setClasses(data));
   // }, []);
-  const { refetch, data: classes = [] } = useQuery({
+  const { data: classes = [] } = useQuery({
     queryKey: ["allClasses", user?.email],
     enabled: !loading && !!user?.email && !!localStorage.getItem('access_token'),
     queryFn: async () => {
       const res = await axiosSecure.get(`/allClasses`);
-      console.log(res)
+      // console.log(res)
       return res.data;
     },
   });

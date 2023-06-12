@@ -5,22 +5,22 @@ import useAxiosSecure from '../../hooks/useAxiosSecure';
 
 const MyClass = () => {
     const {user,loading} = useAuth()
-    // const [axiosSecure] = useAxiosSecure()
-    const [myClass, setMyClass]= useState([])
-    useEffect(()=>{
-        fetch(`${import.meta.env.VITE_API_URL}/myClass?email=${user?.email}`)
-        .then(res => res.json())
-        .then(data => setMyClass(data))
-    },[])
-    // const { refetch, data: selected = [] } = useQuery({
-    //     queryKey: ["carts", user?.email],
-    //     enabled: !loading,
-    //     queryFn: async () => {
-    //       const res = await axiosSecure(`/myClass?email=/${user?.email}`);
-    //       return res.data;
-    //     },
-    //   });
-    //   console.log(selected)
+    const [axiosSecure] = useAxiosSecure()
+    // const [myClass, setMyClass]= useState([])
+    // useEffect(()=>{
+    //     fetch(`${import.meta.env.VITE_API_URL}/myClass?email=${user?.email}`)
+    //     .then(res => res.json())
+    //     .then(data => setMyClass(data))
+    // },[])
+    const { refetch, data: myClass = [] } = useQuery({
+        queryKey: ["myClass", user?.email],
+        enabled: !loading,
+        queryFn: async () => {
+          const res = await axiosSecure.get(`/myClass/${user?.email}`);
+          return res.data;
+        },
+      });
+      // console.log(myClass)
     return (
         <div className=' min-h-screen pt-20 bg-teal'>
             <div className="overflow-x-auto m-14 w-2/3 mx-auto bg-white">

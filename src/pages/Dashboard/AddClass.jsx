@@ -5,7 +5,7 @@ import Swal from "sweetalert2";
 
 const AddClass = () => {
   const { user } = useAuth();
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, reset } = useForm();
   const onSubmit = (data) => {
     const {
       available_seat,
@@ -29,24 +29,25 @@ const AddClass = () => {
     };
 
     fetch(`${import.meta.env.VITE_API_URL}/addClass`, {
-        method: 'POST',
-        headers: {
-            'content-type': 'application/json'
-        },
-        body: JSON.stringify(addClassInfo)
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(addClassInfo),
     })
-    .then(res => res.json())
-    .then(data => {
-        console.log(data)
-        if(data.insertedId){
-            Swal.fire({
-                icon: 'success',
-                title: 'Successfully added this class',
-                showConfirmButton: false,
-                timer: 1500
-              })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data.insertedId) {
+          reset()
+          Swal.fire({
+            icon: "success",
+            title: "Successfully added this class",
+            showConfirmButton: false,
+            timer: 1500,
+          });
         }
-    })
+      });
     // console.log(addClassInfo)
   };
   return (

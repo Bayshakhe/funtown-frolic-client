@@ -9,13 +9,15 @@ import StudentDashboard from "../../pages/Dashboard/StudentDashboard";
 import AdminDashboard from "../../pages/Dashboard/AdminDashboard";
 import InstructorDashboard from "../../pages/Dashboard/InstructorDashboard";
 import useAdmin from "../../hooks/useAdmin";
+import useInstructor from "../../hooks/useInstructor";
 
 const Dashboard = () => {
   const { user,logOut } = useAuth();
   const [isAdmin] = useAdmin()
+  const [isInstructor] = useInstructor()
   // const student = '';
   // const admin = false;
-  // const instructor = false;
+  // const instructor = true;
 //   console.log(user);
   return (
     <div>
@@ -51,11 +53,14 @@ const Dashboard = () => {
               </div>
             </li>
             {
-              isAdmin ? <AdminDashboard></AdminDashboard> : <StudentDashboard></StudentDashboard>
+              isAdmin && <AdminDashboard></AdminDashboard>
             }
-            {/* {student && <StudentDashboard></StudentDashboard>}
-            {admin && <AdminDashboard></AdminDashboard>}
-            {instructor && <InstructorDashboard></InstructorDashboard>} */}
+            {isInstructor && <InstructorDashboard></InstructorDashboard>}
+            {
+              !isAdmin && !isInstructor && <StudentDashboard></StudentDashboard>
+            }
+            {/* {student && <StudentDashboard></StudentDashboard>} */}
+            {/* {admin && <AdminDashboard></AdminDashboard>} */}
             <div className="divider my-2 text-teal font-semibold ">
               ---------------------------------------------
             </div>
