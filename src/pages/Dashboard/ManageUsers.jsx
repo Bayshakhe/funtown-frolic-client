@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Swal from "sweetalert2";
 import useAuth from "../../hooks/useAuth";
 import { useQuery } from "@tanstack/react-query";
@@ -31,6 +31,7 @@ const ManageUsers = () => {
       .then((res) => res.json())
       .then((data) => {
         if (data.modifiedCount > 0) {
+          refetch()
           Swal.fire({
             icon: "success",
             title: `Successfully ${user.name} is admin now.`,
@@ -48,6 +49,7 @@ const ManageUsers = () => {
       .then((res) => res.json())
       .then((data) => {
         if (data.modifiedCount > 0) {
+          refetch()
           Swal.fire({
             icon: "success",
             title: `Successfully ${user.name} is instructor now.`,

@@ -1,11 +1,15 @@
 import React, { useEffect, useState } from "react";
 import SectionTitle from "../../components/SectionTitle";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import useAuth from "../../hooks/useAuth";
+import useAdmin from "../../hooks/useAdmin";
+import useInstructor from "../../hooks/useInstructor";
 
 const AllClasses = () => {
   const { user } = useAuth();
+  const [isAdmin] = useAdmin()
+  const [isInstructor] = useInstructor()
   const [danceClasses, setDanceClasses] = useState([]);
   const navigate = useNavigate();
   // console.log(danceClasses)
@@ -65,7 +69,7 @@ const AllClasses = () => {
       ></SectionTitle>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
         {danceClasses.map((i, index) => (
-          <div key={index} className="card bg-base-100 shadow-md">
+          <div key={index} className={`card bg-base-100 shadow-md ${i.available_seat === 0 && 'bg-red-400'}`}>
             <figure>
               <img className="h-56" src={i.classImg} alt="Dance class" />
             </figure>
@@ -81,9 +85,9 @@ const AllClasses = () => {
                 <p className="text-right">Available Seat: {i.available_seat}</p>
               </div>
               <div className="card-actions justify-center mt-5">
-                <Link onClick={()=>handleSelect(i)} className="button">
+                <button disabled={isAdmin || isInstructor || i.available_seat === 0} onClick={()=>handleSelect(i)} className={`button`}>
                   Select
-                </Link>
+                </button>
               </div>
             </div>
           </div>

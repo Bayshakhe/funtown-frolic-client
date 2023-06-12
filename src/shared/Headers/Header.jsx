@@ -3,11 +3,13 @@ import logo from "/Logo.png";
 import { Link, NavLink } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import useAdmin from "../../hooks/useAdmin";
+import useInstructor from "../../hooks/useInstructor";
 
 const Header = () => {
   const { user, logOut } = useAuth();
   const [dropdownNav, setDropdownNav] = useState(false);
-  const [isAdmin] = useAdmin()
+  const [isAdmin] = useAdmin();
+  const [isInstructor] = useInstructor();
   const navItems = (
     <>
       <li>
@@ -34,26 +36,32 @@ const Header = () => {
           Classes
         </NavLink>
       </li>
-      {
-        user && <li>
-        <NavLink
-          to={`${isAdmin ? '/dashboard/manageClasses' : '/dashboard/selectedClass'}`}
-          className={({ isActive }) => (isActive ? "activeLink" : "")}
-        >
-          Dashboard
-        </NavLink>
-        {/* <NavLink
+      {user && (
+        <li>
+          <NavLink
+            to={`${
+              isAdmin
+                ? "/dashboard/manageClasses"
+                : isInstructor
+                ? "dashboard/myClass"
+                : "/dashboard/selectedClass"
+            }`}
+            className={({ isActive }) => (isActive ? "activeLink" : "")}
+          >
+            Dashboard
+          </NavLink>
+          {/* <NavLink
           to={`/dashboard/myClass`}
           className={({ isActive }) => (isActive ? "activeLink" : "")}
         >
           Dashboard
         </NavLink> */}
-      </li>
-      }
+        </li>
+      )}
       {user && (
         <div className="avatar">
           <div className="w-[44px] rounded-full mr-2 ml-3">
-            <img src={user.photoURL} title={user.displayName}/>
+            <img src={user.photoURL} title={user.displayName} />
           </div>
         </div>
       )}
@@ -77,7 +85,7 @@ const Header = () => {
     <div className="navbar z-10 bg-white bg-opacity-80 shadow-lg fixed rounded-full px-3 py-0">
       <div className="navbar-start">
         <img src={logo} alt="" className="w-12" />
-        <Link to='/' className="text-2xl font-semibold">
+        <Link to="/" className="text-2xl font-semibold">
           Funtown<span className="text-[#019999]">Frolic</span>
         </Link>
       </div>

@@ -43,7 +43,7 @@ const MyClass = () => {
                 <td className="font-semibold">{i.className}</td>
                 <td>{i.enrolled}</td>
                 <td>{i.status}</td>
-                <td></td>
+                <td>{i?.feedback}</td>
                 <td className="">
                   <div className="btn btn-outline hover:bg-[#019999] border border-[#019999] hover:text-white">
                     Update
