@@ -12,4 +12,4 @@
 #### Technologies:
 React.js | Firebase | Vercel | Stripe | React-query | Axios | React-hook-form | Tailwind css | Daisy UI 
 
-#### Live Site: https://funtown-frolic-server.vercel.app
+#### Live Site: https://funtown-frolic.web.app/
