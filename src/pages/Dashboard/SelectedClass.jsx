@@ -23,7 +23,7 @@ const SelectedClass = () => {
       return res.data;
     },
   });
-  console.log(selected);
+  // console.log(selected)
   return (
     <>
       {selected.length > 0 ? (
@@ -46,7 +46,7 @@ const SelectedClass = () => {
                   <td className="font-bold">{i.className}</td>
                   <td>$ {i.price}</td>
                   <td>
-                    <Link to={'/dashboard/payment'} className="btn bg-[#019999] text-white">Pay</Link>
+                    <Link to={`/dashboard/payment/${i._id}`} className="btn bg-[#019999] text-white">Pay</Link>
                   </td>
 
                   <td className="">

@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 .activeLink{
-    @apply text-[#019999] font-bold underline
+    @apply text-[#019999] font-bold underline text-base
 }
 .button{
     @apply p-4 btn font-bold border bg-[#019999] text-white hover:border-[#019999] hover:text-black hover:bg-teal-500 rounded-full normal-case 
