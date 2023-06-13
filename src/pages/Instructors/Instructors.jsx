@@ -4,7 +4,7 @@ import SectionTitle from "../../components/SectionTitle";
 
 const Instructors = () => {
   const [instructors, setInstructors] = useState([]);
-  console.log(instructors)
+  // console.log(instructors)
 
   useEffect(() => {
     fetch(`${import.meta.env.VITE_API_URL}/instructor`)

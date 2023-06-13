@@ -20,15 +20,15 @@ const AllClasses = () => {
   }, []);
 
   const handleSelect = (selectClass) => {
+    const {classImg, className, price, _id} = selectClass;
     selectClass.studentEmail = user?.email;
-    // console.log(selectClass)
     if (user) {
       fetch(`${import.meta.env.VITE_API_URL}/selected`, {
         method: "POST",
         headers: {
           'content-type': 'application/json'
         },
-        body: JSON.stringify(selectClass)
+        body: JSON.stringify({classImg, className, price, studentEmail: user?.email, classId: _id})
       })
       .then(res => res.json())
       .then(data => {
