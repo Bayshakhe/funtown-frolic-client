@@ -69,7 +69,7 @@ const AllClasses = () => {
       ></SectionTitle>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
         {danceClasses.map((i, index) => (
-          <div key={index} className={`card bg-base-100 shadow-md ${i.available_seat === 0 && 'bg-red-400'}`}>
+          <div key={index} className={`card border shadow-md ${i.available_seat === 0 && 'bg-red-400'}`}>
             <figure>
               <img className="h-56" src={i.classImg} alt="Dance class" />
             </figure>

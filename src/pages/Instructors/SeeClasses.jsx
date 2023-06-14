@@ -1,5 +1,5 @@
 import React from "react";
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 
 const SeeClasses = () => {
   const allclass = useLoaderData();
@@ -10,7 +10,7 @@ const SeeClasses = () => {
       {allclass?.map((a) => (
         <div
           key={a._id}
-          className=" md:w-2/3 mx-auto card card-side bg-base-100 shadow-xl grid grid-cols-2"
+          className=" md:w-2/3 mx-auto card card-side shadow-xl grid grid-cols-2"
         >
           <figure>
             <img
@@ -40,7 +40,7 @@ const SeeClasses = () => {
               <p className="text-right">Available Seat: {a.available_seat}</p>
             </div>
             <div className="card-actions justify-end mt-5">
-              <button className="button">Enroll Now</button>
+              <Link to={'/allClasses'} className="button">Visit Now</Link>
             </div>
           </div>
         </div>

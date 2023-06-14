@@ -108,7 +108,7 @@ const Header = ({setDarkTheme}) => {
   );
 
   return (
-    <div className="navbar z-10 bg-white bg-opacity-80 shadow-lg fixed rounded-full px-3 py-0">
+    <div className="navbar z-10 bg-white bg-opacity-80 shadow-lg fixed top-0 left-0 right-0 rounded-full px-3 py-0 max-w-screen-2xl mx-auto">
       <div className="navbar-start">
         <img src={logo} alt="" className="w-12" />
         <Link to="/" className="text-2xl font-semibold">
@@ -139,7 +139,7 @@ const Header = ({setDarkTheme}) => {
           {dropdownNav && (
             <ul
               tabIndex={0}
-              className="menu menu-sm absolute right-0  mt-3 p-2 shadow bg-base-100 rounded-box w-52 lg:hidden"
+              className="menu menu-sm absolute right-0  mt-3 p-2 shadow bg-slate-600 rounded-box w-52 lg:hidden"
             >
               {navItems}
             </ul>

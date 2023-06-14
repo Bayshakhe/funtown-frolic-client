@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Slide } from "react-awesome-reveal";
+import { Link } from "react-router-dom";
 
 const PopularClasses = ({darkTheme}) => {
   const [danceClasses, setDanceClasses] = useState([]);
@@ -32,7 +33,7 @@ const PopularClasses = ({darkTheme}) => {
               <p className="text-right">Available Seat: {a.available_seat}</p>
             </div>
             <div className="card-actions justify-end mt-5">
-              <button className="button">Book Now</button>
+              <Link to={'/allClasses'} className="button">Visit Now</Link>
             </div>
           </div>
         </div>

@@ -22,7 +22,7 @@ const Instructors = () => {
         {instructors.map((i) => (
           <div
             key={i._id}
-            className=" md:w-2/4 mx-auto card card-side bg-base-100 shadow-xl grid grid-cols-2"
+            className=" md:w-2/4 mx-auto border card card-side shadow-xl grid grid-cols-2"
           >
             <figure>
               <img
