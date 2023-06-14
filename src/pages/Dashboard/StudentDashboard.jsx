@@ -20,7 +20,7 @@ const StudentDashboard = () => {
       </li>
       <li>
         <NavLink
-          to="/dsdi"
+          to="/dashboard/enrolledClass"
           className={({ isActive }) =>
             isActive ? "bg-teal text-white font-semibold" : "font-semibold"
           }
@@ -31,7 +31,7 @@ const StudentDashboard = () => {
       </li>
       <li>
         <NavLink
-          to="/dsdi"
+          to="/dashboard/paymentHistory"
           className={({ isActive }) =>
             isActive ? "bg-teal text-white font-semibold" : "font-semibold"
           }

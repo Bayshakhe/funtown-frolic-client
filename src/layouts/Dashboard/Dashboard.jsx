@@ -1,7 +1,6 @@
 import React from "react";
 import { AiOutlineLogout } from "react-icons/ai";
 import { BiHome } from "react-icons/bi";
-import { BsReverseLayoutTextSidebarReverse } from "react-icons/bs";
 import { Link, NavLink, Outlet } from "react-router-dom";
 import logo from "/Logo.png";
 import useAuth from "../../hooks/useAuth";

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import useAuth from "../../hooks/useAuth";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
@@ -23,7 +23,14 @@ const SelectedClass = () => {
       return res.data;
     },
   });
-  // console.log(selected)
+  const handleDelete = (id) => {
+    axiosSecure.delete(`/selected/${id}`)
+    .then(res => {
+      if(res.data.deletedCount > 0){
+        refetch()
+      }
+    })
+  }
   return (
     <>
       {selected.length > 0 ? (
@@ -50,7 +57,7 @@ const SelectedClass = () => {
                   </td>
 
                   <td className="">
-                    <div className="btn btn-outline hover:bg-[#019999] border border-[#019999] hover:text-white">
+                    <div onClick={()=>handleDelete(i._id)} className="btn btn-outline hover:bg-[#019999] border border-[#019999] hover:text-white">
                       Delete
                     </div>
                   </td>

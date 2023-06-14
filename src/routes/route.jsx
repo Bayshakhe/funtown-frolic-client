@@ -18,6 +18,8 @@ import ManageUsers from "../pages/Dashboard/ManageUsers";
 import AdminRoute from "./AdminRoute";
 import InstructorRoute from "./InstructorRoute";
 import Payment from "../pages/Dashboard/Payment";
+import EnrolledClass from "../pages/Dashboard/EnrolledClass";
+import PaymentHistory from "../pages/Dashboard/PaymentHistory";
 
 const router = createBrowserRouter([
   {
@@ -61,15 +63,26 @@ const router = createBrowserRouter([
       </PrivateRoute>
     ),
     children: [
+      // student dashboard
       {
         path: "selectedClass",
         element: <SelectedClass></SelectedClass>,
+      },
+      {
+        path: "enrolledClass",
+        element: <EnrolledClass></EnrolledClass>,
+      },
+      {
+        path: "paymentHistory",
+        element: <PaymentHistory></PaymentHistory>,
       },
       {
         path: "payment/:id",
         element: <Payment></Payment>,
         // loader: ({params}) => fetch(`${import.meta.env.VITE_API_URL}/selected/payment/${params.id}`)
       },
+
+      // instructor dashboard
       {
         path: "myClass",
         element: (
@@ -86,6 +99,8 @@ const router = createBrowserRouter([
           </InstructorRoute>
         ),
       },
+
+      // admin dashboard
       {
         path: "manageClasses",
         element: (
