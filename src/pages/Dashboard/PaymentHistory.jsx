@@ -4,9 +4,14 @@ import useAuth from '../../hooks/useAuth';
 const PaymentHistory = () => {
     const {user} = useAuth()
     const [paymentHistory, setPaymentHistory] = useState([])
+    const token = localStorage.getItem('access_token')
 
     useEffect(()=> {
-        fetch(`${import.meta.env.VITE_API_URL}/paymentHistory?email=${user?.email}`)
+        fetch(`${import.meta.env.VITE_API_URL}/paymentHistory?email=${user?.email}`, {
+          headers:{
+            authorization: `Bearer ${token}`
+          }
+        })
         .then(res => res.json())
         .then(data => setPaymentHistory(data))
     },[])
@@ -32,7 +37,7 @@ const PaymentHistory = () => {
                   <th>{index + 1}</th>
                   <td className="font-bold">{i.className}</td>
                   <td>$ {i.price}</td>
-                  <td>{i.transactionId}</td>
+                  <td className='text-teal'>{i.transactionId}</td>
                   <td>{i.date}</td>
                 </tr>
               ))}

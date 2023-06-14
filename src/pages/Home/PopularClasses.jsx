@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-const PopularClasses = () => {
+const PopularClasses = ({darkTheme}) => {
   const [danceClasses, setDanceClasses] = useState([]);
   // console.log(danceClasses)
   useEffect(() => {
@@ -13,7 +13,7 @@ const PopularClasses = () => {
       {danceClasses.map((a) => (
         <div
           key={a._id}
-          className="card card-side bg-base-100 shadow-xl grid grid-cols-2"
+          className={`card card-side shadow-xl grid grid-cols-2 border ${darkTheme && 'bg-slate-600'}`}
         >
           <figure>
             <img

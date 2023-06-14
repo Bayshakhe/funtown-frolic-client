@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 const SelectedClass = () => {
   const { user, loading } = useAuth();
   const [axiosSecure] = useAxiosSecure();
-  // const token = localStorage.getItem('access_token')
+  const token = localStorage.getItem('access_token')
   // useEffect(()=>{
   //     fetch(`${import.meta.env.VITE_API_URL}/selected?email=${user?.email}`, {
   //         headers: `Bearer ${token}`
@@ -24,7 +24,11 @@ const SelectedClass = () => {
     },
   });
   const handleDelete = (id) => {
-    axiosSecure.delete(`/selected/${id}`)
+    axiosSecure.delete(`/selected/${id}`, {
+      headers:{
+        authorization: `Bearer ${token}`
+      }
+    })
     .then(res => {
       if(res.data.deletedCount > 0){
         refetch()

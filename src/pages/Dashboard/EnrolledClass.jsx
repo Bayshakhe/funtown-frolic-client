@@ -4,9 +4,14 @@ import useAuth from '../../hooks/useAuth';
 const EnrolledClass = () => {
     const {user} = useAuth()
     const [enrolledClass, setEnrolledClass] = useState([])
+    const token = localStorage.getItem('access_token')
 
     useEffect(()=> {
-        fetch(`${import.meta.env.VITE_API_URL}/enrolledClass?email=${user?.email}`)
+        fetch(`${import.meta.env.VITE_API_URL}/enrolledClass?email=${user?.email}`, {
+          headers:{
+            authorization: `Bearer ${token}`
+          }
+        })
         .then(res => res.json())
         .then(data => setEnrolledClass(data))
     },[])
@@ -31,7 +36,7 @@ const EnrolledClass = () => {
                   <th>{index + 1}</th>
                   <td className="font-bold">{i.className}</td>
                   <td>$ {i.price}</td>
-                  <td className='text-teal'>Successfull</td>
+                  <td className='text-teal font-semibold'>Successfull</td>
                 </tr>
               ))}
             </tbody>

@@ -13,7 +13,7 @@ const Home = () => {
         subTitle="A Great Place To Learn"
         title="Popular Classes"
       ></SectionTitle>
-      <PopularClasses></PopularClasses>
+      <PopularClasses ></PopularClasses>
       <SectionTitle
         subTitle="The art of teaching is the art of assisting discovery."
         title="Popular Instructors"

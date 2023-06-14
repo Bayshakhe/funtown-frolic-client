@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-const PopularInstructors = () => {
+const PopularInstructors = ({darkTheme}) => {
   const [instructors, setInstructors] = useState([]);
   // console.log(danceClasses)
   useEffect(() => {
@@ -11,7 +11,7 @@ const PopularInstructors = () => {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mx-20">
       {instructors.slice(0, 6).map((i, index) => (
-        <div key={i._id} className="card bg-base-100 shadow-md">
+        <div key={i._id} className={`card border shadow-md ${darkTheme && 'bg-slate-600'}`}>
           <figure>
             <img src={i.instructorImg} alt="Instructor" />
           </figure>

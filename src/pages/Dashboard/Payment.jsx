@@ -8,9 +8,14 @@ const stripePromise = loadStripe(import.meta.env.VITE_Payment_Api_Key);
 const Payment = () => {
     const {id} = useParams()
     const [price, setPrice] = useState(0)
+    const token = localStorage.getItem('access_token')
 
     useEffect(()=> {
-        fetch(`${import.meta.env.VITE_API_URL}/selected/payment/${id}`)
+        fetch(`${import.meta.env.VITE_API_URL}/selected/payment/${id}`, {
+          headers:{
+            authorization: `Bearer ${token}`
+          }
+        })
         .then(res => res.json())
         .then(data => setPrice(data.price))
     },[id])
