@@ -10,6 +10,8 @@
 * Admin dashboard and Instructor dashboard are authorized.
 
 #### Technologies:
-React.js | Firebase | Vercel | Stripe | React-query | Axios | React-hook-form | Tailwind css | Daisy UI 
+React.js | Firebase | Vercel | Stripe | React-query | Axios | React-hook-form | Tailwind css | Daisy UI | React-awesome-reveal
+
+Admin Information for checking: malina.lee@gmail.com (password: Rinky@2)
 
 #### Live Site: https://funtown-frolic.web.app/
