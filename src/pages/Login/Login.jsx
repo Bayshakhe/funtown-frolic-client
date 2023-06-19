@@ -99,7 +99,7 @@ const Login = () => {
                 </div>
               </form>
               <p className="text-sm mt-2 ml-1">
-                New at Toys & Hobbies? Please{" "}
+                New at Funtown Frolic? Please{" "}
                 <Link to="/register" className="text-teal font-semibold">
                   Register
                 </Link>

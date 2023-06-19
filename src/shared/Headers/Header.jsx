@@ -76,14 +76,8 @@ const Header = ({setDarkTheme}) => {
           >
             Dashboard
           </NavLink>
-          {/* <NavLink
-          to={`/dashboard/myClass`}
-          className={({ isActive }) => (isActive ? "activeLink" : "")}
-        >
-          Dashboard
-        </NavLink> */}
         </li>
-      )}
+        
       {user && (
         <div className="avatar">
           <div className="w-[44px] rounded-full mr-2 ml-3">
@@ -104,21 +98,25 @@ const Header = ({setDarkTheme}) => {
           </Link>
         </li>
       )}
+      )}
     </>
   );
 
   return (
-    <div className="navbar z-10 bg-white bg-opacity-80 shadow-lg fixed top-0 left-0 right-0 rounded-full px-3 py-0 max-w-screen-2xl mx-auto">
+    <div className="navbar z-10 bg-black bg-opacity-80 shadow-lg fixed top-0 left-0 right-0 rounded-full px-3 py-0 max-w-screen-2xl mx-auto">
       <div className="navbar-start">
         <img src={logo} alt="" className="w-12" />
         <Link to="/" className="text-2xl font-semibold">
           Funtown<span className="text-[#019999]">Frolic</span>
         </Link>
       </div>
+      <div className="navbar-center">
+        {navItems}
+      </div>
       <div className="navbar-end">
-        <div className="hidden lg:flex">
+        {/* <div className="hidden lg:flex">
           <ul className="menu menu-horizontal px-1 items-center">{navItems}</ul>
-        </div>
+        </div> */}
         <div onClick={() => setDropdownNav(!dropdownNav)} className="dropdown">
           <label tabIndex={0} className="btn btn-ghost lg:hidden">
             <svg
